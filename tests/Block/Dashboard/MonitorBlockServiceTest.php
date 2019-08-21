@@ -17,6 +17,7 @@ use Sonata\BlockBundle\Block\BlockContext;
 use Sonata\BlockBundle\Test\FakeTemplating;
 use Sonata\HelpersBundle\Block\Dashboard\MonitorBlockService;
 use Sonata\PageBundle\Entity\BaseBlock;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -56,6 +57,7 @@ class MonitorBlockServiceTest extends TestCase
         $this->assertArrayHasKey('template', $blockContext->getSettings());
 
         $this->assertSame('@SonataHelpers/Block/dashboard/monitor.html.twig', $blockContext->getSettings()['template']);
+        $this->assertInstanceOf(Response::class, $service->execute($blockContext));
     }
 }
 
